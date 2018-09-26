@@ -1,5 +1,5 @@
 import React from 'react';
-import './action_item.css';
+import './action_item.scss';
 
 export default
 class ActionItem extends React.Component {
