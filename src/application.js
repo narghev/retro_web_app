@@ -12,12 +12,13 @@ import Login from 'pages/login';
 
 class App extends React.Component {
   render(){
-    console.log(this.props);
+    const {user} = this.props;
+    if (user === null) return <Login />;
+
     return(
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
