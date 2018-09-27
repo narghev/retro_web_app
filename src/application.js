@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,9 +10,9 @@ import Home from 'pages/home';
 import NotFound from 'pages/not_found';
 import Login from 'pages/login';
 
-export default
 class App extends React.Component {
   render(){
+    console.log(this.props);
     return(
       <Router>
         <Switch>
@@ -23,3 +24,9 @@ class App extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(App);
