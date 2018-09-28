@@ -1,5 +1,7 @@
-import userReducer from './user_reducer';
+import userReducer from './user';
+import loadingReducer from './loading';
 
 export default {
-  user: userReducer
+  user: userReducer,
+  loading: loadingReducer
 };
