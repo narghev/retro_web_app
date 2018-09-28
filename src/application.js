@@ -12,6 +12,7 @@ import NotFound from 'pages/not_found';
 import Header from 'components/header';
 import Loading from 'components/loading';
 import AddButton from 'components/add_button';
+import ActionItemModal from 'components/action_item_modal';
 
 import './application.scss';
 
@@ -40,6 +41,7 @@ class App extends React.Component {
         <React.Fragment>
           {loading && <Loading />}
           <Header />
+          <ActionItemModal />
           <AddButton />
           <Switch>
             <Route exact path="/" component={Home} />
