@@ -11,6 +11,7 @@ import NotFound from 'pages/not_found';
 
 import Header from 'components/header';
 import Loading from 'components/loading';
+import AddButton from 'components/add_button';
 
 import './application.scss';
 
@@ -39,6 +40,7 @@ class App extends React.Component {
         <React.Fragment>
           {loading && <Loading />}
           <Header />
+          <AddButton />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="*" component={NotFound} />
