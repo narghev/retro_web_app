@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { auth, provider } from 'config/firebase';
+import {connect} from 'react-redux';
+import { loginAction } from 'actions/user';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -25,50 +26,8 @@ const styles = {
 
 
 class Login extends Component {
-  state = {
-    user: null,
-    error: null
-  };
-
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      user && this.setState({ ...this.state, user })
-    })
-  }
-
-  sign_in = () => {
-    auth.signInWithRedirect(provider)
-    auth
-      .getRedirectResult()
-      .then(result => {
-        this.setState({
-          user: result.user
-        });
-      })
-      .catch(e => {
-        this.setState({
-          ...this.state,
-          error: {
-            code: e.code,
-            msg: e.message,
-            mail: e.mail,
-            cred: e.credential
-          }
-        });
-      });
-  };
-
-  sign_out = () => {
-    auth
-      .signOut()
-      .then(() => {
-        this.setState({ user: null, error: null });
-      })
-  }
-
   render() {
-    const { user } = this.state;
-    const { classes } = this.props;
+    const { classes, user, loginAction } = this.props;
     return (
       <Grid container spacing={24}>
         <Grid item xs>
@@ -89,7 +48,7 @@ class Login extends Component {
             </CardActions>
           </Card>
           : <Grid item xs>
-              <Button onClick={this.sign_in}>Sign in with Google!</Button>
+              <Button onClick={loginAction}>Sign in with Google!</Button>
             </Grid>
           }
         </Grid>
@@ -98,4 +57,12 @@ class Login extends Component {
   }
 }
 
-export default withStyles(styles)(Login);
+const mapDispatchToProps = {
+  loginAction
+};
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Login));
