@@ -1,5 +1,5 @@
 import {setUser} from './types';
-import {signIn} from 'helpers/auth';
+import {signIn, signOut} from 'helpers/auth';
 
 export const setUserAction = user => ({
     type: setUser,
@@ -9,4 +9,9 @@ export const setUserAction = user => ({
 export const loginAction = () => async dispatch => {
   const user = await signIn();
   dispatch(setUserAction(user));
+};
+
+export const logoutAction = () => async dispatch => {
+  await signOut();
+  dispatch(setUserAction(null))
 };

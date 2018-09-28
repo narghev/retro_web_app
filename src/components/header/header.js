@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import {logoutAction} from 'actions/user';
 import { AppBar, Toolbar, Typography, IconButton, Avatar, Menu, MenuItem } from '@material-ui/core'
 
 import './header.scss'
@@ -11,7 +12,7 @@ class Header extends Component {
   }
 
   handleSignOut = () => {
-    // Sign Out
+    this.props.logoutAction();
     this.handleClose();
   }
 
@@ -74,4 +75,8 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = {
+  logoutAction
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

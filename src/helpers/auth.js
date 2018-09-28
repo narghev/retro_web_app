@@ -9,5 +9,5 @@ export const signIn = async () => {
 
 export const signOut = async () => {
   await auth.signOut();
-  return true;
+  return;
 };
