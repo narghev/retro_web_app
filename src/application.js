@@ -10,6 +10,7 @@ import {setUserAction} from 'actions/user';
 import Home from 'pages/home';
 import NotFound from 'pages/not_found';
 import Login from 'pages/login';
+import Header from 'components/header';
 import {auth} from 'config/firebase';
 
 class App extends React.Component {
@@ -26,10 +27,13 @@ class App extends React.Component {
 
     return(
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="*" component={NotFound} />
-        </Switch>
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </div>
       </Router>
     );
   }
