@@ -13,23 +13,16 @@ import './asignee_select.scss';
 
 class AsigneeSelect extends Component {
   state = {
-    users: {},
     asignees: []
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.users);
-    this.setState({ ...this.state, users: nextProps.users });
-  }
-
   handleChange = e => {
-    console.log(e.target.value);
-    // this.setState({ ...this.state, asignees: event.target.value });
+    this.setState({ ...this.state, asignees: e.target.value });
   };
 
-
   render() {
-    const { asignees, users } = this.state;
+    const { asignees } = this.state;
+    const { users } = this.props;
 
     return (
       <div className="root">
@@ -38,6 +31,7 @@ class AsigneeSelect extends Component {
             Asignees
           </InputLabel>
           <Select
+            autoWidth
             multiple
             variant="outlined"
             value={asignees}
@@ -45,9 +39,9 @@ class AsigneeSelect extends Component {
             input={<Input id="select-multiple-checkbox" />}
             renderValue={selected => selected.join(', ')}
           >
-            {Object.keys(users).forEach(key => (
-              <MenuItem key={users[key].uid} value={users[key].uid}>
-                <Checkbox checked={asignees.indexOf(users[key].email) > -1} />
+            {Object.keys(users).map(key => (
+              <MenuItem key={users[key].uid} value={users[key].displayName}>
+                <Checkbox checked={asignees.indexOf(users[key].displayName) > -1} />
                 <ListItemText primary={users[key].displayName} />
               </MenuItem>
             ))}
