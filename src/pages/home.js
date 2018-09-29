@@ -1,10 +1,13 @@
 import React from 'react';
+import AsigneeSelect from 'components/asignee_select';
 
 export default
-class HomePage extends React.Component {
-  render(){
+class Home extends React.Component {
+  render() {
     return (
-      <h1>home page</h1>
-    );
+      <div>
+        <AsigneeSelect />
+      </div>
+    )
   }
 }
