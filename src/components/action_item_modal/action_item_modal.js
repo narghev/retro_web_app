@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {closeModalAction} from 'actions/action_item';
+import NewActionItem from 'components/new_action_item';
 
 import './action_item_modal.scss';
 
@@ -17,7 +18,7 @@ class ActionItemModal extends React.Component {
       <div className="modal">
         <div className="background" onClick={closeModalAction}>
           <div className="content" onClick={this.contentClickHandler}>
-            <p>AAAAAAAAAAAA</p>
+            <NewActionItem />
           </div>
         </div>
       </div>

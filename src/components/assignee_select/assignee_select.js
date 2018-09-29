@@ -9,15 +9,15 @@ import {
   Select,
   Checkbox
 } from '@material-ui/core';
-import './asignee_select.scss';
+import './assignee_select.scss';
 
-class AsigneeSelect extends Component {
+class AssigneeSelect extends Component {
   state = {
-    asignees: []
+    assignees: []
   }
 
   handleChange = e => {
-    this.setState({ ...this.state, asignees: e.target.value });
+    this.setState({ ...this.state, assignees: e.target.value });
   };
 
   renderValue = uids => {
@@ -25,26 +25,26 @@ class AsigneeSelect extends Component {
   }
 
   render() {
-    const { asignees } = this.state;
-    const { users } = this.props;
+    const { assignees } = this.state;
+    const { users, className } = this.props;
 
     return (
-      <div className="root">
+      <div className="assignee-select-wrapper">
         <FormControl className="form-control">
           <InputLabel htmlFor="select-multiple-checkbox">
-            Asignees
+            Assignees
           </InputLabel>
           <Select
             autoWidth
             multiple
-            value={asignees}
+            value={assignees}
             onChange={this.handleChange}
             input={<Input id="select-multiple-checkbox" />}
             renderValue={selected => this.renderValue(selected)}
           >
             {Object.keys(users).map(key => (
               <MenuItem key={users[key].uid} value={users[key].uid}>
-                <Checkbox checked={asignees.indexOf(users[key].uid) > -1} />
+                <Checkbox checked={assignees.indexOf(users[key].uid) > -1} />
                 <ListItemText primary={users[key].displayName} />
               </MenuItem>
             ))}
@@ -59,4 +59,4 @@ const mapStateToProps = state => ({
   users: state.users
 });
 
-export default connect(mapStateToProps)(AsigneeSelect);
+export default connect(mapStateToProps)(AssigneeSelect);
