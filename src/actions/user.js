@@ -1,6 +1,7 @@
 import {setUser, setUsers} from './types';
 import {signIn, signOut} from 'helpers/auth';
-import {getUsers} from 'helpers/user';
+import {saveUser, getUsers} from 'helpers/user';
+
 
 export const setUserAction = user => ({
     type: setUser,
@@ -14,6 +15,7 @@ export const setUsersAction = users => ({
 
 export const loginAction = () => async dispatch => {
   const user = await signIn();
+  user && saveUser(user);
   dispatch(setUserAction(user));
 };
 
