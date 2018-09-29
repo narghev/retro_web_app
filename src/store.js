@@ -4,8 +4,12 @@ import {
   applyMiddleware
 } from 'redux';
 import reducers from 'reducers';
-import logger from 'redux-logger';
+import {createLogger} from 'redux-logger';
 import reduxThunk from 'redux-thunk';
+
+const logger = createLogger({
+  collapsed: (getState, action, logEntry) => !logEntry.error
+});
 
 export default createStore(
   combineReducers(reducers),
