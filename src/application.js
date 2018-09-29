@@ -1,8 +1,9 @@
 import React from 'react';
 import {auth} from 'config/firebase';
 import { connect } from 'react-redux';
-import { setUserAction, getUsersAction } from 'actions/user';
+import { saveUser } from 'helpers/user';
 import { setLoadingStatus } from 'actions/loading';
+import { setUserAction, getUsersAction } from 'actions/user';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from 'pages/home';
@@ -23,6 +24,7 @@ class App extends React.Component {
     getUsersAction();
     auth.onAuthStateChanged(user => {
       setUserAction(user);
+      saveUser(user);
       setLoadingStatus(false);
     });
   }

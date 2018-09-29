@@ -1,6 +1,7 @@
 import { database } from 'config/firebase';
 
 export const saveUser = async user => {
+  if (!user) return;
   const { uid, displayName, photoURL, email } = user;
   const snapshot = await database.ref(`users/${uid}`).once('value');
   if (!snapshot.val()) {
