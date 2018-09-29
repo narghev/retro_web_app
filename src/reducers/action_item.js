@@ -1,6 +1,6 @@
 import {openModal, closeModal} from 'actions/types';
 
-const defaultState = true;
+const defaultState = false;
 
 export default (state = defaultState, action) => {
   switch(action.type) {
