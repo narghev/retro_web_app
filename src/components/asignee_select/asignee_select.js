@@ -20,6 +20,10 @@ class AsigneeSelect extends Component {
     this.setState({ ...this.state, asignees: e.target.value });
   };
 
+  renderValue = uids => {
+    return uids.map(uid => this.props.users[uid].displayName).join(", ");
+  }
+
   render() {
     const { asignees } = this.state;
     const { users } = this.props;
@@ -37,11 +41,11 @@ class AsigneeSelect extends Component {
             value={asignees}
             onChange={this.handleChange}
             input={<Input id="select-multiple-checkbox" />}
-            renderValue={selected => selected.join(', ')}
+            renderValue={selected => this.renderValue(selected)}
           >
             {Object.keys(users).map(key => (
-              <MenuItem key={users[key].uid} value={users[key].displayName}>
-                <Checkbox checked={asignees.indexOf(users[key].displayName) > -1} />
+              <MenuItem key={users[key].uid} value={users[key].uid}>
+                <Checkbox checked={asignees.indexOf(users[key].uid) > -1} />
                 <ListItemText primary={users[key].displayName} />
               </MenuItem>
             ))}
