@@ -26,7 +26,7 @@ class AssigneeSelect extends Component {
 
   render() {
     const { assignees } = this.state;
-    const { users, className } = this.props;
+    const { users } = this.props;
 
     return (
       <div className="assignee-select-wrapper">

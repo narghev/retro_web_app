@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import AssigneeSelect from 'components/assignee_select';
+import DatePicker from 'components/date_picker';
 
 import './new_action_item.scss';
 
@@ -21,6 +22,8 @@ class NewActionItem extends React.Component {
             />
           </div>
           <div className="date-time">
+            <DatePicker
+            />
           </div>
         </div>
       </div>
