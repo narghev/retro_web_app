@@ -37,7 +37,6 @@ class AsigneeSelect extends Component {
           <Select
             autoWidth
             multiple
-            variant="outlined"
             value={asignees}
             onChange={this.handleChange}
             input={<Input id="select-multiple-checkbox" />}

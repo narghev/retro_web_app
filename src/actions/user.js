@@ -15,7 +15,7 @@ export const setUsersAction = users => ({
 
 export const loginAction = () => async dispatch => {
   const user = await signIn();
-  user && saveUser(user);
+  saveUser(user);
   dispatch(setUserAction(user));
 };
 

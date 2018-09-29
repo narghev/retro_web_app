@@ -19,9 +19,9 @@ class App extends React.Component {
   componentDidMount(){
     const {setUserAction, setLoadingStatus, getUsersAction} = this.props;
     setLoadingStatus(true);
+    getUsersAction();
     auth.onAuthStateChanged(user => {
       setUserAction(user);
-      getUsersAction();
       setLoadingStatus(false);
     });
   }
