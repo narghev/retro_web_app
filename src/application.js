@@ -1,7 +1,8 @@
 import React from 'react';
 import {auth} from 'config/firebase';
 import { connect } from 'react-redux';
-import { setUserAction } from 'actions/user';
+import { saveUser } from 'helpers/user';
+import { setUserAction, getUsersAction } from 'actions/user';
 import { setLoadingStatus } from 'actions/loading';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -17,10 +18,12 @@ import './application.scss';
 
 class App extends React.Component {
   componentDidMount(){
-    const {setUserAction, setLoadingStatus} = this.props;
+    const {setUserAction, setLoadingStatus, getUsersAction} = this.props;
     setLoadingStatus(true);
     auth.onAuthStateChanged(user => {
       setUserAction(user);
+      getUsersAction();
+      user && saveUser(user);
       setLoadingStatus(false);
     });
   }
@@ -58,7 +61,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setUserAction,
-  setLoadingStatus
+  setLoadingStatus,
+  getUsersAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

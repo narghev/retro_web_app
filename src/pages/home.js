@@ -1,10 +1,10 @@
 import React from 'react';
 
 export default
-class HomePage extends React.Component {
-  render(){
+class Home extends React.Component {
+  render() {
     return (
-      <h1>home page</h1>
-    );
+      <div />
+    )
   }
 }
