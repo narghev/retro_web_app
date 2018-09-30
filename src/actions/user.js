@@ -2,7 +2,6 @@ import {setUser, setUsers} from './types';
 import {signIn, signOut} from 'helpers/auth';
 import {getUsers} from 'helpers/user';
 
-
 export const setUserAction = user => ({
     type: setUser,
     payload: user

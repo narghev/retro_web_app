@@ -1,16 +1,18 @@
 import {
   setNewActionItemDate,
   setNewActionItemTime,
+  setNewActionItemOwner,
   clearNewActionItemData,
   setNewActionItemAssignees,
-  setNewActionItemDescription,
+  setNewActionItemDescription
 } from 'actions/types';
 
 const defaultState = {
   description: '',
   assignees: [],
   date: '',
-  time: ''
+  time: '',
+  ownerUid: ''
 };
 
 export default (state = defaultState, action) => {
@@ -23,6 +25,8 @@ export default (state = defaultState, action) => {
       return {...state, time: action.payload};
     case setNewActionItemDescription:
       return {...state, description: action.payload};
+    case setNewActionItemOwner:
+      return {...state, ownerUid: action.payload};
     case clearNewActionItemData:
       return {...defaultState};
     default:

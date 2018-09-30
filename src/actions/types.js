@@ -6,6 +6,7 @@ export const setLoading = 'SET_LOADING';
 
 export const setNewActionItemDate = 'SET_DATE';
 export const setNewActionItemTime = 'SET_TIME';
+export const setNewActionItemOwner = 'SET_OWNER';
 export const setNewActionItemAssignees = 'SET_ASSIGNEES';
 export const setNewActionItemDescription = 'SET_DESCRIPTION';
 export const clearNewActionItemData = 'CLEAR_NEW_ACTION_ITEM_DATA';

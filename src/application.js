@@ -3,6 +3,7 @@ import {auth} from 'config/firebase';
 import { connect } from 'react-redux';
 import { saveUser } from 'helpers/user';
 import { setLoadingStatus } from 'actions/loading';
+import { setOwner } from 'actions/new_action_item';
 import { setUserAction, getUsersAction } from 'actions/user';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -19,12 +20,13 @@ import './application.scss';
 
 class App extends React.Component {
   componentDidMount(){
-    const {setUserAction, setLoadingStatus, getUsersAction} = this.props;
+    const {setUserAction, setLoadingStatus, getUsersAction, setOwner} = this.props;
     setLoadingStatus(true);
     getUsersAction();
     auth.onAuthStateChanged(user => {
       setUserAction(user);
       saveUser(user);
+      setOwner(user.uid);
       setLoadingStatus(false);
     });
   }
@@ -64,7 +66,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setUserAction,
   setLoadingStatus,
-  getUsersAction
+  getUsersAction,
+  setOwner
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
