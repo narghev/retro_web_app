@@ -1,8 +1,9 @@
 import {
   setNewActionItemDate,
   setNewActionItemTime,
+  clearNewActionItemData,
   setNewActionItemAssignees,
-  setNewActionItemDescription
+  setNewActionItemDescription,
 } from 'actions/types';
 
 const defaultState = {
@@ -22,6 +23,8 @@ export default (state = defaultState, action) => {
       return {...state, time: action.payload};
     case setNewActionItemDescription:
       return {...state, description: action.payload};
+    case clearNewActionItemData:
+      return {...defaultState};
     default:
       return state;
   }

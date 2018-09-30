@@ -5,7 +5,7 @@ import DatePicker from 'components/date_picker';
 import TimePicker from 'components/time_picker';
 import TextField from '@material-ui/core/TextField';
 import AssigneeSelect from 'components/assignee_select';
-import {setDescription, setDate, setTime, setAssignees} from 'actions/new_action_item';
+import {setDescription, setDate, setTime, setAssignees, clearData} from 'actions/new_action_item';
 
 import './new_action_item.scss';
 
@@ -17,7 +17,7 @@ class NewActionItem extends React.Component {
   descriptionChangeHandler = e => this.props.setDescription(e.target.value);
 
   render(){
-    const {description, date, time, assignees} = this.props;
+    const {description, date, time, assignees, clearData} = this.props;
 
     return(
       <div className="new-action-item">
@@ -42,6 +42,7 @@ class NewActionItem extends React.Component {
           </div>
         </div>
         <div className="button-wrapper">
+          <Button size="large" className="warning" onClick={clearData}>Clear</Button>
           <Button size="large" variant="contained" color="primary">Save</Button>
         </div>
       </div>
@@ -52,6 +53,7 @@ class NewActionItem extends React.Component {
 const mapDispatchToProps = {
   setTime,
   setDate,
+  clearData,
   setAssignees,
   setDescription
 };

@@ -1,6 +1,7 @@
 import {
   setNewActionItemDate,
   setNewActionItemTime,
+  clearNewActionItemData,
   setNewActionItemAssignees,
   setNewActionItemDescription
 } from 'actions/types';
@@ -23,4 +24,8 @@ export const setTime = time => ({
 export const setAssignees = assignees => ({
   type: setNewActionItemAssignees,
   payload: assignees
+});
+
+export const clearData = () => ({
+  type: clearNewActionItemData
 });
