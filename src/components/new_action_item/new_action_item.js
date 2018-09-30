@@ -3,6 +3,7 @@ import DatePicker from 'components/date_picker';
 import TimePicker from 'components/time_picker';
 import TextField from '@material-ui/core/TextField';
 import AssigneeSelect from 'components/assignee_select';
+import Button from '@material-ui/core/Button';
 
 import './new_action_item.scss';
 
@@ -23,10 +24,12 @@ class NewActionItem extends React.Component {
             />
           </div>
           <div className="date-time">
-            <DatePicker
-            />
+            <DatePicker/>
             <TimePicker />
           </div>
+        </div>
+        <div className="button-wrapper">
+          <Button size="large" variant="contained" color="primary">Save</Button>
         </div>
       </div>
     );
