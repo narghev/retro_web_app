@@ -4,9 +4,9 @@ import Button from '@material-ui/core/Button';
 import DatePicker from 'components/date_picker';
 import TimePicker from 'components/time_picker';
 import TextField from '@material-ui/core/TextField';
-import {closeModalAction} from 'actions/action_item';
+import {closeModalAction, createActionItemAction} from 'actions/action_item';
 import AssigneeSelect from 'components/assignee_select';
-import {setDescription, setDate, setTime, setAssignees, clearData, createActionItemAction} from 'actions/new_action_item';
+import {setDescription, setDate, setTime, setAssignees, clearData} from 'actions/new_action_item';
 
 import './new_action_item.scss';
 
@@ -17,7 +17,8 @@ class NewActionItem extends React.Component {
   };
 
   saveClickHandler = async () => {
-    const {description, date, assignees, setLoadingStatus, time, ownerUid, createActionItemAction, closeModalAction} = this.props;
+    const {createActionItemAction, closeModalAction, actionItemData} = this.props;
+    const {description, date, assignees, setLoadingStatus, time, ownerUid} = actionItemData;
     const errorFields = [];
 
     if (!description) errorFields.push('description');
@@ -29,7 +30,7 @@ class NewActionItem extends React.Component {
       return;
     }
     
-    await createActionItemAction({description, date, assignees, time, ownerUid});
+    await createActionItemAction(actionItemData);
     closeModalAction();
   };
 
@@ -40,7 +41,8 @@ class NewActionItem extends React.Component {
 
   render(){
     const {errorFields} = this.state;
-    const {description, date, time, assignees, clearData} = this.props;
+    const {actionItemData} = this.props;
+    const {description, date, time, assignees, clearData} = actionItemData;
 
     const dateError = errorFields.includes('date');
     const assigneesError = errorFields.includes('assignees');
@@ -90,7 +92,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  ...state.newActionItem
+  actionItemData: state.newActionItem
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewActionItem);
