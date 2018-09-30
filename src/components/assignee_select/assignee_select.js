@@ -12,12 +12,9 @@ import {
 import './assignee_select.scss';
 
 class AssigneeSelect extends Component {
-  state = {
-    assignees: []
-  }
 
-  handleChange = e => {
-    this.setState({ ...this.state, assignees: e.target.value });
+  static defaultProps = {
+    assignees: []
   };
 
   renderValue = uids => {
@@ -25,8 +22,7 @@ class AssigneeSelect extends Component {
   }
 
   render() {
-    const { assignees } = this.state;
-    const { users } = this.props;
+    const { users, assignees, onChange } = this.props;
 
     return (
       <div className="assignee-select-wrapper">
@@ -38,7 +34,7 @@ class AssigneeSelect extends Component {
             autoWidth
             multiple
             value={assignees}
-            onChange={this.handleChange}
+            onChange={onChange}
             input={<Input id="select-multiple-checkbox" />}
             renderValue={selected => this.renderValue(selected)}
           >
