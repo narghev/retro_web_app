@@ -14,7 +14,8 @@ import './assignee_select.scss';
 class AssigneeSelect extends Component {
 
   static defaultProps = {
-    assignees: []
+    assignees: [],
+    error: false
   };
 
   renderValue = uids => {
@@ -22,7 +23,7 @@ class AssigneeSelect extends Component {
   }
 
   render() {
-    const { users, assignees, onChange } = this.props;
+    const { users, assignees, onChange, error } = this.props;
 
     return (
       <div className="assignee-select-wrapper">
@@ -37,6 +38,7 @@ class AssigneeSelect extends Component {
             onChange={onChange}
             input={<Input id="select-multiple-checkbox" />}
             renderValue={selected => this.renderValue(selected)}
+            error={error}
           >
             {Object.keys(users).map(key => (
               <MenuItem key={users[key].uid} value={users[key].uid}>

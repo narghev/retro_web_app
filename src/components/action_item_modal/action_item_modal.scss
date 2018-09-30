@@ -23,6 +23,10 @@
       justify-content: flex-end;
       padding-right: 5%;
       margin-top: .5rem;
+
+      svg {
+        cursor: pointer;
+      }
     }
   }
 }

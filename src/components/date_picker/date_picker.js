@@ -8,6 +8,11 @@ import 'react-day-picker/lib/style.css';
 
 export default
 class DatePicker extends React.PureComponent {
+
+  static defaultProps = {
+    error: false
+  };
+
   render(){
     const {
       label,
@@ -15,11 +20,12 @@ class DatePicker extends React.PureComponent {
       onChange,
       onClear,
       className,
-      showClearIcon
+      showClearIcon,
+      error
     } = this.props;
     const value = date ? moment(date).format('DD-MMM-YYYY') : '';
     return(
-      <div className={`date ${className}`}>
+      <div className={`date ${className} ${error ? 'error' : ''}`}>
         {label && <span className="label">{label}</span>}
         <div>
           <DayPickerInput

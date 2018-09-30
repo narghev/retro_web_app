@@ -11,13 +11,36 @@ import './new_action_item.scss';
 
 class NewActionItem extends React.Component {
 
+  state = {
+    errorFields: []
+  };
+
+  saveClickHandler = () => {
+    const {description, date, assignees} = this.props;
+    const errorFields = [];
+
+    if (!description) errorFields.push('description');
+    if (!date) errorFields.push('date');
+    if (!assignees.length) errorFields.push('assignees');
+
+    if (errorFields.length){
+      this.setState({errorFields});
+      return;
+    }
+  };
+
   dateChangeHandler = d => this.props.setDate(d);
   timeChangeHandler = e => this.props.setTime(e.target.value);
   assigneesChangeHandler = e => this.props.setAssignees(e.target.value);
   descriptionChangeHandler = e => this.props.setDescription(e.target.value);
 
   render(){
+    const {errorFields} = this.state;
     const {description, date, time, assignees, clearData} = this.props;
+
+    const dateError = errorFields.includes('date');
+    const assigneesError = errorFields.includes('assignees');
+    const descriptionError = errorFields.includes('description');
 
     return(
       <div className="new-action-item">
@@ -27,6 +50,7 @@ class NewActionItem extends React.Component {
           multiline
           value={description}
           onChange={this.descriptionChangeHandler}
+          error={descriptionError}
         />
         <div className="additional-data-wrapper">
           <div className="assignee">
@@ -34,16 +58,17 @@ class NewActionItem extends React.Component {
               assignees={assignees}
               className="assignee-select"
               onChange={this.assigneesChangeHandler}
+              error={assigneesError}
             />
           </div>
           <div className="date-time">
-            <DatePicker date={date} onChange={this.dateChangeHandler} />
+            <DatePicker date={date} onChange={this.dateChangeHandler} error={dateError} />
             <TimePicker value={time} onChange={this.timeChangeHandler} />
           </div>
         </div>
         <div className="button-wrapper">
           <Button size="large" className="warning" onClick={clearData}>Clear</Button>
-          <Button size="large" variant="contained" color="primary">Save</Button>
+          <Button size="large" variant="contained" color="primary" onClick={this.saveClickHandler}>Save</Button>
         </div>
       </div>
     );
