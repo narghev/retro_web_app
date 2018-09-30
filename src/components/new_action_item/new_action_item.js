@@ -4,8 +4,9 @@ import Button from '@material-ui/core/Button';
 import DatePicker from 'components/date_picker';
 import TimePicker from 'components/time_picker';
 import TextField from '@material-ui/core/TextField';
+import {closeModalAction} from 'actions/action_item';
 import AssigneeSelect from 'components/assignee_select';
-import {setDescription, setDate, setTime, setAssignees, clearData} from 'actions/new_action_item';
+import {setDescription, setDate, setTime, setAssignees, clearData, createActionItemAction} from 'actions/new_action_item';
 
 import './new_action_item.scss';
 
@@ -15,8 +16,8 @@ class NewActionItem extends React.Component {
     errorFields: []
   };
 
-  saveClickHandler = () => {
-    const {description, date, assignees} = this.props;
+  saveClickHandler = async () => {
+    const {description, date, assignees, setLoadingStatus, time, ownerUid, createActionItemAction, closeModalAction} = this.props;
     const errorFields = [];
 
     if (!description) errorFields.push('description');
@@ -27,9 +28,12 @@ class NewActionItem extends React.Component {
       this.setState({errorFields});
       return;
     }
+    
+    await createActionItemAction({description, date, assignees, time, ownerUid});
+    closeModalAction();
   };
 
-  dateChangeHandler = d => this.props.setDate(d);
+  dateChangeHandler = d => this.props.setDate(d && d.toString());
   timeChangeHandler = e => this.props.setTime(e.target.value);
   assigneesChangeHandler = e => this.props.setAssignees(e.target.value);
   descriptionChangeHandler = e => this.props.setDescription(e.target.value);
@@ -80,7 +84,9 @@ const mapDispatchToProps = {
   setDate,
   clearData,
   setAssignees,
-  setDescription
+  setDescription,
+  closeModalAction,
+  createActionItemAction
 };
 
 const mapStateToProps = state => ({
