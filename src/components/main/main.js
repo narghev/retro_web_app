@@ -63,7 +63,8 @@ const mapStateToProps = state => ({
 
 export default compose(
   firebaseConnect([
-    'action_items'
+    'action_items',
+    'users'
   ]),
   connect(mapStateToProps)
 )(Main);

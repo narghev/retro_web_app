@@ -1,3 +1,43 @@
-.a {
-  color: red;
+.action-item {
+  padding: 15px;
+  border-radius: 5px;
+  width: 530px;
+
+  .content {
+    flex-direction: row;
+    display: flex;
+
+    .description {
+      width: 300px;
+      margin-right: 25px;
+      
+      .text {
+        width: 300px;
+        overflow: hidden;
+        display: -webkit-box;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 7;
+        /* autoprefixer: off */
+        -webkit-box-orient: vertical;
+        /* autoprefixer: on */
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 140px;
+
+      .asignees-avatars {
+        display: flex;
+        flex-direction: row;
+
+        .avatar {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 }

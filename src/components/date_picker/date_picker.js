@@ -25,7 +25,7 @@ class DatePicker extends React.PureComponent {
     } = this.props;
     const value = date ? moment(date).format('DD-MMM-YYYY') : '';
     return(
-      <div className={`date ${className} ${error ? 'error' : ''}`}>
+      <div className={`date-picker ${className} ${error ? 'error' : ''}`}>
         {label && <span className="label">{label}</span>}
         <div>
           <DayPickerInput

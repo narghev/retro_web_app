@@ -1,6 +1,8 @@
 import React from 'react';
 import ActionItem from 'components/action_item';
 
+import './action_item_list.scss';
+
 export default
 class ActionItemList extends React.Component {
   render(){
