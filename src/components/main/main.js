@@ -1,11 +1,13 @@
-import React from 'react';
 import _ from 'lodash';
+import React from 'react';
+import moment from 'moment';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
 import ActionItemList from 'components/action_item_list';
+import { displayNotification } from 'helpers/notification';
 import { firebaseConnect, isEmpty } from 'react-redux-firebase';
 
 import './main.scss';
@@ -32,8 +34,17 @@ class Main extends React.Component {
       })
     );
 
+    assignedToMe.sort((item1, item2) => moment(item1.date) < moment(item2.date));
+    assignedByMe.sort((item1, item2) => moment(item1.date) < moment(item2.date));
+
     return {assignedByMe, assignedToMe};
   };
+
+  componentDidUpdate(_, prevState){
+    if (this.state.assignedToMe.length - prevState.assignedToMe.length === 1) {
+      displayNotification('A new action item has been assigned to you!');
+    }
+  }
 
   handleTabChange = (_, tabIndex) => this.setState({tabIndex});
 

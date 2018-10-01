@@ -6,10 +6,8 @@ import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { firebaseConnect } from 'react-redux-firebase';
 import CardContent from '@material-ui/core/CardContent';
-import DateIcon from '@material-ui/icons/DateRange';
-import blue from '@material-ui/core/colors/blue';
+import DateIcon from '@material-ui/icons/DateRange'
 
 import './action_item.scss';
 
