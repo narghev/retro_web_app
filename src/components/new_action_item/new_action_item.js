@@ -41,8 +41,8 @@ class NewActionItem extends React.Component {
 
   render(){
     const {errorFields} = this.state;
-    const {actionItemData} = this.props;
-    const {description, date, time, assignees, clearData} = actionItemData;
+    const {actionItemData, clearData} = this.props;
+    const {description, date, time, assignees} = actionItemData;
 
     const dateError = errorFields.includes('date');
     const assigneesError = errorFields.includes('assignees');
