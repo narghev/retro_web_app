@@ -12,7 +12,3 @@ export const saveActionItem = async itemData => {
 
   await database.ref(`action_items/${ownerUid}`).set(data);
 }
-
-// export const getActionItems = async uid => {
-
-// };

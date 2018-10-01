@@ -18,7 +18,7 @@ class NewActionItem extends React.Component {
 
   saveClickHandler = async () => {
     const {createActionItemAction, closeModalAction, actionItemData} = this.props;
-    const {description, date, assignees, setLoadingStatus, time, ownerUid} = actionItemData;
+    const {description, date, assignees} = actionItemData;
     const errorFields = [];
 
     if (!description) errorFields.push('description');

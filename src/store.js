@@ -1,17 +1,26 @@
 import {
+  compose,
   createStore,
   combineReducers,
   applyMiddleware
 } from 'redux';
 import reducers from 'reducers';
-import {createLogger} from 'redux-logger';
 import reduxThunk from 'redux-thunk';
+import firebase from 'config/firebase';
+import { createLogger } from 'redux-logger';
+import { reactReduxFirebase } from 'react-redux-firebase';
 
 const logger = createLogger({
   collapsed: (getState, action, logEntry) => !logEntry.error
 });
 
-export default createStore(
+const rrfConfig = {};
+
+const createStoreWithFirebase = compose(
+  reactReduxFirebase(firebase, rrfConfig),
+)(createStore)
+
+export default createStoreWithFirebase(
   combineReducers(reducers),
   applyMiddleware(logger),
   applyMiddleware(reduxThunk),
