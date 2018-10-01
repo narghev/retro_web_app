@@ -5,16 +5,16 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import DateIcon from '@material-ui/icons/DateRange';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import DateIcon from '@material-ui/icons/DateRange'
 
 import './action_item.scss';
 
 class ActionItem extends React.Component {
   render(){
     const {item, users} = this.props;
-    const {description, date, time, ownerUid, assignees} = item;
+    const {description, date, ownerUid, assignees} = item;
     const owner = users[ownerUid];
 
     return (
@@ -33,7 +33,7 @@ class ActionItem extends React.Component {
               />
               <Chip
                 icon={<DateIcon />}
-                label={<span>{moment(date).format('DD-MMM-YYYY')} {time}</span>}
+                label={<span>{moment(date).format('DD-MMM-YYYY HH:MM')}</span>}
                 color="secondary"
                 variant="outlined"
               />
