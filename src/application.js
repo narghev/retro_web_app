@@ -25,8 +25,8 @@ class App extends React.Component {
     getUsersAction();
     auth.onAuthStateChanged(user => {
       setUserAction(user);
-      saveUser(user);
-      setOwner(user.uid);
+      user && saveUser(user);
+      user && setOwner(user.uid);
       setLoadingStatus(false);
     });
   }

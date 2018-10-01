@@ -7,7 +7,9 @@ import {
   FormControl,
   ListItemText,
   Select,
-  Checkbox
+  Checkbox,
+  Chip,
+  Avatar
 } from '@material-ui/core';
 import './assignee_select.scss';
 
@@ -18,8 +20,23 @@ class AssigneeSelect extends Component {
     error: false
   };
 
+  handleDelete = uid => {
+    const newAssignees = this.props.assignees.filter(asigneeUid => asigneeUid !== uid);
+    this.props.onChange({target: { value: newAssignees }});
+  }
+
   renderValue = uids => {
-    return uids.map(uid => this.props.users[uid].displayName).join(", ");
+    const { users } = this.props;
+    return uids.map(uid => {
+      const user = users[uid];
+      const [fName, lName] = user.displayName.split(" ");
+      const label = `${fName[0]}${lName[0]}`;
+      return (<Chip
+        avatar={<Avatar src={user.photoURL}/>}
+        onDelete={() => this.handleDelete(uid)}
+        key={uid}
+        label={label} />);
+    });
   }
 
   render() {
@@ -32,7 +49,6 @@ class AssigneeSelect extends Component {
             Assignees
           </InputLabel>
           <Select
-            autoWidth
             multiple
             value={assignees}
             onChange={onChange}

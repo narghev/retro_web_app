@@ -21,11 +21,15 @@
     .close-button-wrapper {
       display: flex;
       justify-content: flex-end;
-      padding-right: 5%;
+      margin-right: .5rem;
       margin-top: .5rem;
 
       svg {
+        opacity: .7;
         cursor: pointer;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
