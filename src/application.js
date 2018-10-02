@@ -14,6 +14,7 @@ import NotFound from 'pages/not_found';
 import Header from 'components/header';
 import Loading from 'components/loading';
 import AddButton from 'components/add_button';
+import RetroModal from 'components/retro_modal';
 import ActionItemModal from 'components/action_item_modal';
 
 import './application.scss';
@@ -47,6 +48,7 @@ class App extends React.Component {
           {loading && <Loading />}
           <Header />
           <ActionItemModal />
+          <RetroModal />
           <AddButton />
           <Switch>
             <Route exact path="/" component={Home} />
