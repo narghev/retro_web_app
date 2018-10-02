@@ -50,7 +50,8 @@ class Main extends React.Component {
   handleTabChange = (_, tabIndex) => this.setState({tabIndex});
 
   render(){
-    const {tabIndex, assignedToMe, assignedByMe, retros} = this.state;
+    const {tabIndex, assignedToMe, assignedByMe} = this.state;
+    const {retros} = this.props;
 
     return (
       <div className="main-wrapper">

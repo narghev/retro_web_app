@@ -1,30 +1,27 @@
 import React from 'react';
+import moment from 'moment';
+import {connect} from 'react-redux';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
 import './retro.scss';
 
 class Retro extends React.Component {
-  state = {
-    expanded: false
-  };
-
-  handleExpandClick = () => this.setState(state => ({ expanded: !state.expanded }));
-
   render() {
+    const {data, users} = this.props;
+    const {displayName, photoURL} = users[data.ownerUid];
+
     return (
       <Card className="retro">
         <CardHeader
           avatar={
-            <Avatar>
-              R
-            </Avatar>
+            <Avatar src={photoURL} alt="" />
           }
-          title="Owner"
-          subheader="September 14, 2016"
+          title={moment(data.date).format('DD-MMM-YYYY')}
+          subheader={displayName}
         />
         <CardContent>
           <Typography component="p">
@@ -37,4 +34,8 @@ class Retro extends React.Component {
   }
 }
 
-export default Retro;
+const mapStateToProps = state => ({
+  users: state.firebase.data.users
+});
+
+export default connect(mapStateToProps)(Retro);
