@@ -7,6 +7,7 @@ export const setNewRetroDate = 'SET_RETRO_DATE';
 export const setNewRetroTime = 'SET_RETRO_TIME';
 export const openRetroModal = 'OPEN_RETRO_MODAL';
 export const setNewActionItemOwner = 'SET_OWNER';
+export const setNewActionItemRetro = 'SET_RETRO';
 export const closeRetroModal = 'CLOSE_RETRO_MODAL';
 export const setNewRetroOwner = 'SET_NEW_RETRO_OWNER';
 export const clearNewRetroData = 'CLEAR_NEW_RETRO_DATA';

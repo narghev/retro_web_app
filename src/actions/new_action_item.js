@@ -1,4 +1,5 @@
 import {
+  setNewActionItemRetro,
   setNewActionItemOwner,
   clearNewActionItemData,
   setNewActionItemAssignees,
@@ -22,4 +23,9 @@ export const setOwner = owner => ({
 
 export const clearData = () => ({
   type: clearNewActionItemData
+});
+
+export const setRetro = retro => ({
+  type: setNewActionItemRetro,
+  payload: retro
 });

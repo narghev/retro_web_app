@@ -6,8 +6,8 @@ export const saveActionItem = async itemData => {
 
   const actionItemData = {...itemData, date: moment().toString()};
 
-  const { description, assignees, ownerUid, date } = actionItemData;
-  if (!description || !assignees.length || !date || !ownerUid) return;
+  const { description, assignees, ownerUid, date, retro } = actionItemData;
+  if (!description || !assignees.length || !date || !ownerUid || retro === null) return;
 
   const snapshot = await database.ref(`action_items/${ownerUid}`).once('value');
   const data = snapshot.val() || [];
