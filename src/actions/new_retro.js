@@ -1,6 +1,7 @@
 import {
   setNewRetroDate,
   setNewRetroTime,
+  setNewRetroOwner,
   clearNewRetroData
 } from 'actions/types';
 
@@ -12,6 +13,11 @@ export const setDate = date => ({
 export const setTime = time => ({
   type: setNewRetroTime,
   payload: time
+});
+
+export const setRetroOwner = owner => ({
+  type: setNewRetroOwner,
+  payload: owner
 });
 
 export const clearData = () => ({

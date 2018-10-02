@@ -1,12 +1,14 @@
 import {
   setNewRetroDate,
   setNewRetroTime,
+  setNewRetroOwner,
   clearNewRetroData
 } from 'actions/types';
 
 const defaultState = {
   date: '',
-  time: ''
+  time: '',
+  ownerUid: ''
 };
 
 export default (state = defaultState, action) => {
@@ -17,6 +19,8 @@ export default (state = defaultState, action) => {
       return {...state, time: action.payload};
     case clearNewRetroData:
       return {...defaultState};
+    case setNewRetroOwner:
+      return {...state, ownerUid: action.payload};
     default:
       return state;
   }

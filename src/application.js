@@ -2,6 +2,7 @@ import React from 'react';
 import {auth} from 'config/firebase';
 import { connect } from 'react-redux';
 import { saveUser } from 'helpers/user';
+import { setRetroOwner } from 'actions/new_retro';
 import { setLoadingStatus } from 'actions/loading';
 import { setOwner } from 'actions/new_action_item';
 import { setUserAction, getUsersAction } from 'actions/user';
@@ -21,13 +22,14 @@ import './application.scss';
 
 class App extends React.Component {
   componentDidMount(){
-    const {setUserAction, setLoadingStatus, getUsersAction, setOwner} = this.props;
+    const {setUserAction, setLoadingStatus, getUsersAction, setOwner, setRetroOwner} = this.props;
     setLoadingStatus(true);
     getUsersAction();
     auth.onAuthStateChanged(user => {
       setUserAction(user);
       user && saveUser(user);
       user && setOwner(user.uid);
+      user && setRetroOwner(user.uid);
       setLoadingStatus(false);
     });
   }
@@ -69,6 +71,7 @@ const mapDispatchToProps = {
   setUserAction,
   setLoadingStatus,
   getUsersAction,
+  setRetroOwner,
   setOwner
 };
 
