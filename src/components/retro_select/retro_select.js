@@ -17,6 +17,10 @@ import './retro_select.scss';
 
 class RetroSelect extends React.Component {
 
+  static defaultProps = {
+    retros: []
+  };
+
   render() {
     const { retros, onChange, error, value } = this.props;
 
@@ -34,7 +38,7 @@ class RetroSelect extends React.Component {
             input={<Input id="retro-select" />}
             error={error}
           >
-            {retros.map((r, i) => (
+            {retros && retros.map((r, i) => (
               <MenuItem key={i} value={i}>
                 {moment(r.date).format('DD-MMM-YYYY')}
               </MenuItem>

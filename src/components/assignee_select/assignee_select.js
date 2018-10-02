@@ -17,6 +17,7 @@ class AssigneeSelect extends Component {
 
   static defaultProps = {
     assignees: [],
+    users: {},
     error: false
   };
 
