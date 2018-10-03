@@ -25,7 +25,7 @@ class Main extends React.Component {
     const { actionItems, userUid } = nextProps;
     if (isEmpty(actionItems) || !userUid) return null;
 
-    const assignedByMe = actionItems[userUid];
+    const assignedByMe = actionItems[userUid] || [];
     const assignedToMe = [];
     
     _.forEach(actionItems, itemList =>

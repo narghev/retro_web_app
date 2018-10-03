@@ -31,7 +31,7 @@ class NewRetro extends React.Component {
   };
 
   timeChangeHandler = e => this.props.setTime(e.target.value);
-  dateChangeHandler = e => this.props.setDate(e.toString());
+  dateChangeHandler = e => e && this.props.setDate(e.toString());
 
   render(){
     const {errorFields} = this.state;

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
@@ -6,12 +7,36 @@ import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
+import MiniActionItem from 'components/mini_action_item';
 
 import './retro.scss';
 
 class Retro extends React.Component {
+
+  state = {
+    items: []
+  };
+
+  static getDerivedStateFromProps = nextProps => {
+    const {actionItems, data} = nextProps;
+    if (!actionItems) return null;
+
+    const items = [];
+
+    _.forEach(actionItems, itemList => {
+      itemList.forEach(item => {
+        if (item.retro === data.index) {
+          items.push(item);
+        }
+      });
+    });
+
+    return {items};
+  };
+
   render() {
     const {data, users} = this.props;
+    const { items } = this.state;
     const {displayName, photoURL} = users[data.ownerUid];
 
     return (
@@ -24,10 +49,9 @@ class Retro extends React.Component {
           subheader={displayName}
         />
         <CardContent>
-          <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
-          </Typography>
+          {
+            items && items.map((i, id) => <MiniActionItem key={id} item={i} />)
+          }
         </CardContent>
       </Card>
     );
@@ -35,7 +59,8 @@ class Retro extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.firebase.data.users
+  users: state.firebase.data.users,
+  actionItems: state.firebase.data.action_items
 });
 
 export default connect(mapStateToProps)(Retro);

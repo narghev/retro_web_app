@@ -9,6 +9,6 @@ export const saveRetro = async retroData => {
 
   const snapshot = await retroRef.once('value');
   const retros = snapshot.val() || [];
-  retros.push(retroData);
+  retros.push({...retroData, index: retros.length});
   await retroRef.set(retros);
 };

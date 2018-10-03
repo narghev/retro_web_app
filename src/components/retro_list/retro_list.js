@@ -12,7 +12,7 @@ class RetroList extends React.Component {
       <div className="retro-list">
         <AddRetroButton />
         {
-          retros && retros.map((r, i) => <Retro key={i} data={r} />)
+          retros && retros.map((r, i) => <Retro key={i} data={r} index={i} />)
         }
       </div>
     );
