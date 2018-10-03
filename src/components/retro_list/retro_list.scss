@@ -1,6 +1,9 @@
 .retro-list {
   background-color: #EEEEEE;
   padding: 15px;
+  padding-left: 0;
   height: 72vh;
   display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
 }

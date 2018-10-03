@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
-import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import MiniActionItem from 'components/mini_action_item';
 

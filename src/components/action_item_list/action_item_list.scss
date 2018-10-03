@@ -19,4 +19,8 @@
   flex-wrap: wrap;
   align-content: flex-start;
   overflow-y: auto;
+
+  &.loading {
+    background-color: #ffffff;
+  }
 }

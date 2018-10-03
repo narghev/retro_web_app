@@ -6,11 +6,7 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
-  ListItemText,
-  Select,
-  Checkbox,
-  Chip,
-  Avatar
+  Select
 } from '@material-ui/core';
 
 import './retro_select.scss';
@@ -23,8 +19,6 @@ class RetroSelect extends React.Component {
 
   render() {
     const { retros, onChange, error, value } = this.props;
-
-    const renderValue = (retros && retros[value]) ? moment(retros[value].date).format('DD-MMM-YYYY') : '';
 
     return (
       <div className="retro-select-wrapper">

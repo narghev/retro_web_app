@@ -7,23 +7,33 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
 import RetroList from 'components/retro_list';
+import MainLoading from 'components/main_loading';
 import ActionItemList from 'components/action_item_list';
 import { displayNotification } from 'helpers/notification';
-import { firebaseConnect, isEmpty } from 'react-redux-firebase';
+import { firebaseConnect, isLoaded } from 'react-redux-firebase';
 
 import './main.scss';
 
 class Main extends React.Component {
 
+  static defaultProps = {
+    actionItems: []
+  };
+
   state = {
     tabIndex: 0,
+    loading: true,
     assignedToMe: [],
     assignedByMe: []
   };
 
-  static getDerivedStateFromProps = nextProps => {
-    const { actionItems, userUid } = nextProps;
-    if (isEmpty(actionItems) || !userUid) return null;
+  static getDerivedStateFromProps = (nextProps, state) => {
+    const { actionItems, userUid, users, retros } = nextProps;
+    const { loading } = state;
+
+    if (loading && isLoaded(actionItems) && isLoaded(users) && isLoaded(retros)){
+      return {loading: false};
+    }
 
     const assignedByMe = actionItems[userUid] || [];
     const assignedToMe = [];
@@ -50,7 +60,7 @@ class Main extends React.Component {
   handleTabChange = (_, tabIndex) => this.setState({tabIndex});
 
   render(){
-    const {tabIndex, assignedToMe, assignedByMe} = this.state;
+    const {tabIndex, assignedToMe, assignedByMe, loading} = this.state;
     const {retros} = this.props;
 
     return (
@@ -62,10 +72,10 @@ class Main extends React.Component {
             <Tab label="Retros" />
           </Tabs>
         </AppBar>
-
-        {tabIndex === 0 && <ActionItemList items={assignedToMe} />}
-        {tabIndex === 1 && <ActionItemList items={assignedByMe} />}
-        {tabIndex === 2 && <RetroList retros={retros} />}
+        {loading && <MainLoading />}
+        {tabIndex === 0 && <ActionItemList items={assignedToMe} className={loading && 'loading'} />}
+        {tabIndex === 1 && <ActionItemList items={assignedByMe} className={loading && 'loading'} />}
+        {tabIndex === 2 && <RetroList retros={retros} className={loading && 'loading'} />}
       </div>
     );
   }
@@ -74,7 +84,8 @@ class Main extends React.Component {
 const mapStateToProps = state => ({
   userUid: state.user.uid,
   retros: state.firebase.data.retros,
-  actionItems: state.firebase.data.action_items
+  actionItems: state.firebase.data.action_items,
+  users: state.firebase.data.users
 });
 
 export default compose(
