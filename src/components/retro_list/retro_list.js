@@ -10,10 +10,10 @@ class RetroList extends React.Component {
     const {retros} = this.props;
     return(
       <div className="retro-list">
-        <AddRetroButton />
         {
           retros && retros.map((r, i) => <Retro key={i} data={r} index={i} />)
         }
+        <AddRetroButton />
       </div>
     );
   }

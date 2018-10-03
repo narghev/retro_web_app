@@ -6,8 +6,8 @@ import { openModalAction } from 'actions/retro';
 import './add_retro_button.scss';
 
 const AddButton = ({openModalAction}) => (
-  <div className="add-retro-button-wrapper">
-    <AddIcon onClick={openModalAction} />
+  <div className="add-retro-button-wrapper" onClick={openModalAction}>
+    <AddIcon />
   </div>
 );
 

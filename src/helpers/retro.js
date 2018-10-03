@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { database } from 'config/firebase';
 
 const retroRef = database.ref('retros');

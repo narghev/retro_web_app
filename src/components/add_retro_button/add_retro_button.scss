@@ -3,11 +3,13 @@
   opacity: 0.5;
   height: 100%;
   width: 300px;
+  min-width: 300px;
   border: 2px #EF5350 dashed;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 15px;
 
   svg {
     font-size: 45px;
