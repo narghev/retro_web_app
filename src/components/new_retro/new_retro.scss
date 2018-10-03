@@ -1,0 +1,53 @@
+.new-retro {
+  @media all and (min-width: 1000px) {
+    width: 20vw;
+  }
+  @media all and (max-width: 1000px) and (min-width: 600px) {
+    width: 50vw;
+  }
+  @media all and (max-width: 600px){
+    width: 90vw;
+  }
+
+  background-color: #E0E0E0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .warning {
+    color: #d32f2f;
+    border-color: #d32f2f;
+    margin-right: 1rem;
+  }
+
+  .additional-data-wrapper, .description-textarea {
+    width: 90%;
+  }
+
+  .description-textarea {
+    textarea {
+      max-height: 5rem;
+    }
+  }
+
+  .date-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 90%;
+
+    .date {
+      width: 75%;
+      margin-right: 5px;
+    }
+  }
+
+  .button-wrapper {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+}

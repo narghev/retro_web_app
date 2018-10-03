@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
+import RetroList from 'components/retro_list';
 import ActionItemList from 'components/action_item_list';
 import { displayNotification } from 'helpers/notification';
 import { firebaseConnect, isEmpty } from 'react-redux-firebase';
@@ -24,7 +25,7 @@ class Main extends React.Component {
     const { actionItems, userUid } = nextProps;
     if (isEmpty(actionItems) || !userUid) return null;
 
-    const assignedByMe = actionItems[userUid];
+    const assignedByMe = actionItems[userUid] || [];
     const assignedToMe = [];
     
     _.forEach(actionItems, itemList =>
@@ -50,6 +51,7 @@ class Main extends React.Component {
 
   render(){
     const {tabIndex, assignedToMe, assignedByMe} = this.state;
+    const {retros} = this.props;
 
     return (
       <div className="main-wrapper">
@@ -57,25 +59,29 @@ class Main extends React.Component {
           <Tabs value={tabIndex} onChange={this.handleTabChange}>
             <Tab label="Assigned To Me" />
             <Tab label="Assigned By Me" />
+            <Tab label="Retros" />
           </Tabs>
         </AppBar>
 
         {tabIndex === 0 && <ActionItemList items={assignedToMe} />}
         {tabIndex === 1 && <ActionItemList items={assignedByMe} />}
+        {tabIndex === 2 && <RetroList retros={retros} />}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  actionItems: state.firebase.data.action_items,
-  userUid: state.user.uid
+  userUid: state.user.uid,
+  retros: state.firebase.data.retros,
+  actionItems: state.firebase.data.action_items
 });
 
 export default compose(
   firebaseConnect([
-    'action_items',
-    'users'
+    'users',
+    'retros',
+    'action_items'
   ]),
   connect(mapStateToProps)
 )(Main);

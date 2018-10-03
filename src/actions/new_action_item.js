@@ -1,6 +1,5 @@
 import {
-  setNewActionItemDate,
-  setNewActionItemTime,
+  setNewActionItemRetro,
   setNewActionItemOwner,
   clearNewActionItemData,
   setNewActionItemAssignees,
@@ -10,16 +9,6 @@ import {
 export const setDescription = descr => ({
   type: setNewActionItemDescription,
   payload: descr
-});
-
-export const setDate = date => ({
-  type: setNewActionItemDate,
-  payload: date
-});
-
-export const setTime = time => ({
-  type: setNewActionItemTime,
-  payload: time
 });
 
 export const setAssignees = assignees => ({
@@ -34,4 +23,9 @@ export const setOwner = owner => ({
 
 export const clearData = () => ({
   type: clearNewActionItemData
+});
+
+export const setRetro = retro => ({
+  type: setNewActionItemRetro,
+  payload: retro
 });

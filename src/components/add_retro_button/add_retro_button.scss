@@ -1,0 +1,20 @@
+.add-retro-button-wrapper {
+  background-color: #FFEBEE;
+  opacity: 0.5;
+  height: 100%;
+  width: 300px;
+  border: 2px #EF5350 dashed;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 45px;
+    color: #EF5350;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

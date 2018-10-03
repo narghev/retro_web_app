@@ -1,12 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import DatePicker from 'components/date_picker';
-import TimePicker from 'components/time_picker';
 import TextField from '@material-ui/core/TextField';
 import {closeModalAction, createActionItemAction} from 'actions/action_item';
 import AssigneeSelect from 'components/assignee_select';
-import {setDescription, setDate, setTime, setAssignees, clearData} from 'actions/new_action_item';
+import RetroSelect from 'components/retro_select';
+import {setDescription, setAssignees, clearData, setRetro} from 'actions/new_action_item';
 
 import './new_action_item.scss';
 
@@ -18,12 +17,12 @@ class NewActionItem extends React.Component {
 
   saveClickHandler = async () => {
     const {createActionItemAction, closeModalAction, actionItemData} = this.props;
-    const {description, date, assignees} = actionItemData;
+    const {description, assignees, retro} = actionItemData;
     const errorFields = [];
 
     if (!description) errorFields.push('description');
-    if (!date) errorFields.push('date');
     if (!assignees.length) errorFields.push('assignees');
+    if (retro === null) errorFields.push('retro');
 
     if (errorFields.length){
       this.setState({errorFields});
@@ -34,19 +33,18 @@ class NewActionItem extends React.Component {
     closeModalAction();
   };
 
-  dateChangeHandler = d => this.props.setDate(d && d.toString());
-  timeChangeHandler = e => this.props.setTime(e.target.value);
   assigneesChangeHandler = e => this.props.setAssignees(e.target.value);
   descriptionChangeHandler = e => this.props.setDescription(e.target.value);
+  retroChangeHandler = e => this.props.setRetro(e.target.value);
 
   render(){
     const {errorFields} = this.state;
     const {actionItemData, clearData} = this.props;
-    const {description, date, time, assignees} = actionItemData;
+    const {description, assignees, retro} = actionItemData;
 
-    const dateError = errorFields.includes('date');
     const assigneesError = errorFields.includes('assignees');
     const descriptionError = errorFields.includes('description');
+    const retroError = errorFields.includes('retro');
 
     return(
       <div className="new-action-item">
@@ -67,11 +65,8 @@ class NewActionItem extends React.Component {
               error={assigneesError}
             />
           </div>
-          <div className="date-time">
-            <DatePicker date={date} onChange={this.dateChangeHandler} error={dateError} />
-            <TimePicker value={time} onChange={this.timeChangeHandler} />
-          </div>
         </div>
+        <RetroSelect onChange={this.retroChangeHandler} value={retro} error={retroError} />
         <div className="button-wrapper">
           <Button size="large" className="warning" onClick={clearData}>Clear</Button>
           <Button size="large" variant="contained" color="primary" onClick={this.saveClickHandler}>Save</Button>
@@ -82,8 +77,7 @@ class NewActionItem extends React.Component {
 };
 
 const mapDispatchToProps = {
-  setTime,
-  setDate,
+  setRetro,
   clearData,
   setAssignees,
   setDescription,
