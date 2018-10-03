@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import DateIcon from '@material-ui/icons/DateRange';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
+import AvatarTooltip from 'components/avatar_tooltip';
 
 import './action_item.scss';
 
@@ -39,7 +40,13 @@ class ActionItem extends React.Component {
               />
               <div className="asignees-avatars">
                 {
-                  assignees.map(uid => <Avatar className="avatar" key={uid} alt="" src={users[uid].photoURL} />)
+                  assignees.map(uid => (
+                    <AvatarTooltip
+                      src={users[uid].photoURL}
+                      key={uid} placement="top"
+                      title={users[uid].displayName}
+                    />
+                  ))
                 }
               </div>
             </div>

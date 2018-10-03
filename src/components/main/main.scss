@@ -1,4 +1,9 @@
 .main-wrapper {
-  width: 90vw;
+  @media all and (max-width: 600px) {
+    width: none;
+  }
+  @media all and (min-width: 1000px) {
+    width: 90vw;
+  }
   margin-top: 5vh;
 }
