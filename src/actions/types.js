@@ -13,4 +13,5 @@ export const setNewRetroOwner = 'SET_NEW_RETRO_OWNER';
 export const clearNewRetroData = 'CLEAR_NEW_RETRO_DATA';
 export const setNewActionItemAssignees = 'SET_ASSIGNEES';
 export const setNewActionItemDescription = 'SET_DESCRIPTION';
+export const setNewActionItemIsDone = 'SET_IS_DONE';
 export const clearNewActionItemData = 'CLEAR_NEW_ACTION_ITEM_DATA';

@@ -11,7 +11,7 @@ import { createLogger } from 'redux-logger';
 import { reactReduxFirebase } from 'react-redux-firebase';
 
 const logger = createLogger({
-  collapsed: (getState, action, logEntry) => !logEntry.error
+  collapsed: (_getState, _action, logEntry) => !logEntry.error
 });
 
 const rrfConfig = {};

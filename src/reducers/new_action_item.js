@@ -3,14 +3,16 @@ import {
   clearNewActionItemData,
   setNewActionItemAssignees,
   setNewActionItemDescription,
-  setNewActionItemRetro
+  setNewActionItemRetro,
+  setNewActionItemIsDone
 } from 'actions/types';
 
 const defaultState = {
   description: '',
   assignees: [],
   ownerUid: '',
-  retro: null
+  retro: null,
+  isDone: false
 };
 
 export default (state = defaultState, action) => {
@@ -23,6 +25,8 @@ export default (state = defaultState, action) => {
       return {...state, ownerUid: action.payload};
     case setNewActionItemRetro:
       return {...state, retro: action.payload};
+    case setNewActionItemIsDone:
+      return {...state, isDone: action.payload};
     case clearNewActionItemData:
       return {...defaultState};
     default:

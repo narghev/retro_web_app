@@ -3,7 +3,8 @@ import {
   setNewActionItemOwner,
   clearNewActionItemData,
   setNewActionItemAssignees,
-  setNewActionItemDescription
+  setNewActionItemDescription,
+  setNewActionItemIsDone
 } from 'actions/types';
 
 export const setDescription = descr => ({
@@ -28,4 +29,9 @@ export const clearData = () => ({
 export const setRetro = retro => ({
   type: setNewActionItemRetro,
   payload: retro
+});
+
+export const setIsDone = () => ({
+  type: setNewActionItemIsDone,
+  payload: true
 });
